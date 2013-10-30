@@ -1,0 +1,208 @@
+#this report show the valgrind test report. 
+#My system:
+#    CPU: Intel(R) Core(TM) i7-3610QM CPU @ 2.30GHz
+#    Kernel: Linux 3.2.0-51-generic
+#    System: Xubuntu 12.04 32bit
+#    g++: Version 4.6.3
+#It demonstrates that the memory leak comes from OpenImageIO but not my user code.
+
+yuan@yuan:~/workspace/Backup/ExtractionCPP$ valgrind --leak-check=full ./color
+==2872== Memcheck, a memory error detector
+==2872== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==2872== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==2872== Command: ./color
+==2872== 
+Loading target image.
+X: 1338	Y:960	Channel: 3
+XRES = 45
+YRES = 32
+==2872== 
+==2872== HEAP SUMMARY:
+==2872==     in use at exit: 5,094 bytes in 23 blocks
+==2872==   total heap usage: 11,749,830 allocs, 11,749,807 frees, 509,868,612 bytes allocated
+==2872== 
+==2872== 21 bytes in 1 blocks are possibly lost in loss record 1 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B1CC8: _GLOBAL__sub_I_ustring.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 25 bytes in 1 blocks are definitely lost in loss record 2 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4159BB1: OpenImageIO::v1_0::ParamValue::init_noclear(OpenImageIO::v1_0::ustring, OpenImageIO::v1_0::TypeDesc, int, void const*, bool) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40C7D62: OpenImageIO::v1_0::ImageSpec::attribute(std::string const&, OpenImageIO::v1_0::TypeDesc, void const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0xBEC9FFD3: ???
+==2872== 
+==2872== 26 bytes in 1 blocks are possibly lost in loss record 3 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2080: _GLOBAL__sub_I_texoptions.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 26 bytes in 1 blocks are possibly lost in loss record 4 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2095: _GLOBAL__sub_I_texoptions.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 27 bytes in 1 blocks are possibly lost in loss record 5 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B20BF: _GLOBAL__sub_I_texoptions.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 27 bytes in 1 blocks are possibly lost in loss record 6 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B22BE: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 27 bytes in 1 blocks are possibly lost in loss record 7 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B235E: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 28 bytes in 1 blocks are possibly lost in loss record 8 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B1EF2: _GLOBAL__sub_I_texture3d.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 28 bytes in 1 blocks are possibly lost in loss record 9 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B206B: _GLOBAL__sub_I_texoptions.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 29 bytes in 1 blocks are possibly lost in loss record 10 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B20AA: _GLOBAL__sub_I_texoptions.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 29 bytes in 1 blocks are possibly lost in loss record 11 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B230E: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 30 bytes in 1 blocks are possibly lost in loss record 12 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2386: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 30 bytes in 1 blocks are possibly lost in loss record 13 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B23AE: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 31 bytes in 1 blocks are possibly lost in loss record 14 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2218: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 31 bytes in 1 blocks are possibly lost in loss record 15 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2296: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 32 bytes in 1 blocks are possibly lost in loss record 16 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2246: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 33 bytes in 1 blocks are possibly lost in loss record 17 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B22E6: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 34 bytes in 1 blocks are possibly lost in loss record 18 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B226E: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 36 bytes in 1 blocks are possibly lost in loss record 19 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x4176B00: OpenImageIO::v1_0::ustring::ustring(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40B2336: _GLOBAL__sub_I_imagecache.cpp (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x400EEAA: call_init (dl-init.c:85)
+==2872==    by 0x400EF93: _dl_init (dl-init.c:134)
+==2872==    by 0x400120E: ??? (in /lib/i386-linux-gnu/ld-2.15.so)
+==2872== 
+==2872== 36 bytes in 1 blocks are definitely lost in loss record 20 of 23
+==2872==    at 0x402BE68: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==2872==    by 0x4166001: OpenImageIO::v1_0::ustring::make_unique(char const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0x40C7CED: OpenImageIO::v1_0::ImageSpec::attribute(std::string const&, OpenImageIO::v1_0::TypeDesc, void const*) (in /usr/lib/libOpenImageIO.so.1.0)
+==2872==    by 0xBEC9FFD3: ???
+==2872== 
+==2872== LEAK SUMMARY:
+==2872==    definitely lost: 61 bytes in 2 blocks
+==2872==    indirectly lost: 0 bytes in 0 blocks
+==2872==      possibly lost: 525 bytes in 18 blocks
+==2872==    still reachable: 4,508 bytes in 3 blocks
+==2872==         suppressed: 0 bytes in 0 blocks
+==2872== Reachable blocks (those to which a pointer was found) are not shown.
+==2872== To see them, rerun with: --leak-check=full --show-reachable=yes
+==2872== 
+==2872== For counts of detected and suppressed errors, rerun with: -v
+==2872== ERROR SUMMARY: 20 errors from 20 contexts (suppressed: 0 from 0)
+

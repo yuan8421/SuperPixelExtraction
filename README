@@ -1,0 +1,46 @@
+Author: YuanWang & YuefengZhou 	Clemson University
+Email:  yuan8421@gmail.com
+Email:  rfwindcn@gmail.com
+
+1. How to set up environment?
+    To run this program you have to install OpenImageIO first. This library will read image data for us.
+    To install OpenImageIO in your system. It may need other image library.
+    You could find instruction and source file here:
+        https://github.com/OpenImageIO/oiio
+    After you install the OpenImageIO, you may find:
+        ($INSTALL_PATH)/oiio-RB-1.0/dist/linux/include/OpenImageIO
+        ($INSTALL_PATH)/oiio-RB-1.0/dist/linux/lib        
+    You need to change image.h line 5 
+        #include <OpenImageIO/imageio.h> 
+        to your correct path. And correct the INCLUDES_PATH in MakeFile.
+    You also need to add 
+        ($INSTALL_PATH)/oiio-RB-1.0/dist/linux/lib
+        to your lib path or copy one dynamic lib file and two soft link under this folder into your lib directory.
+        
+2. How to run this project?
+    In your console, type
+        make
+        ./color <your image path>
+    Or you could type
+	./color --help
+    for more information.
+    It may take 5-10s, then you can find "output.jpg" in your folder.
+    
+3. What's the big O?
+    Well, our first version code use lots of C and some C++. The big O is depends on the input... Yes, you hear me. It depends.
+    In this version, I improve algorithm and change to OO program. Now it is a C++ code completely. And I guarantee the big O = NLogN.
+    N equals the pixle number in your image (width * height).
+
+4. Test cases
+    1jpg-12.jpg are all come from Berkeley database.	
+  	http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/segbench/bench/html/images.html
+    13.jpg	http://www.gxgyjz.com/
+    14.jpg	http://www.ehow.com/how_4541214_making-fishing-nets.html
+    15.jpg	http://game.hljtv.com/html/2013/anime_0617/1029_40.html
+    16.jpg	http://asserttrue.blogspot.com/2010/08/smart-sobel-image-filter.html
+    17.jpg	http://www.forumtri.be/nl/info/kasteel
+    
+4. About me
+    We are all graduate CS students in Clemson University. This is the first time to upload my project into Internet. 
+    I am a newbi in computer science but YuefengZhou is not :)
+    If you have any question or advice, please email me and let me know. Thank you!
